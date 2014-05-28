@@ -459,8 +459,8 @@ execute() {
 
 setdefaults() {
     # Default configuration, can be changed with script arguments
-    SMACK_REPO=git://github.com/Flowdalic/smack.git
-    SMACK_BRANCH=master
+    SMACK_REPO=git://github.com/walkingyhumbs/smack.git
+    SMACK_BRANCH=develop
     SMACK_LOCAL=false
     UPDATE_REMOTE=true
     BUILD_CUSTOM=false
