@@ -103,23 +103,13 @@ parseSmack() {
 	if $SNAPSHOT; then
 		VERSION_TAG+="-SNAPSHOT-${MACHINE_DATE}"
 	fi
-	RELEASE_DIR=${ASMACK_RELEASES}/${VERSION_TAG}
+	RELEASE_DIR=${ASMACK_RELEASES}
 	if [ -d $RELEASE_DIR ]; then
-		if $SNAPSHOT; then
-			rm -rf $RELEASE_DIR
-		else
-			echo "Error: Release dir already exists"
-			exit 1
-		fi
+        rm -rf $RELEASE_DIR
 	fi
 	TAG_FILE=${VERSION_TAG_DIR}/${VERSION_TAG}.tag
 	if [ -f $TAG_FILE ]; then
-		if $SNAPSHOT; then
-			rm $TAG_FILE
-		else
-			echo "Error: Tag file already exists"
-			exit 1
-		fi
+        rm $TAG_FILE
 	fi
 }
 
@@ -292,14 +282,7 @@ buildandroid() {
 		exit 1
 	fi
 
-	local asmack_suffix
-	if [[ -n ${VERSION_TAG} ]] && [[ -n ${1} ]] ; then
-		asmack_suffix="${1}-${VERSION_TAG}"
-	elif [[ -n ${VERSION_TAG} ]] ; then
-		asmack_suffix="-${VERSION_TAG}"
-	else
-		asmack_suffix="${1}"
-	fi
+	local asmack_suffix="${1}"
 	if ! echo -e ${sdks} \
 		| xargs -I{} -n 1 $XARGS_ARGS ant \
 		-Dandroid.version={} \
