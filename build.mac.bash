@@ -380,6 +380,7 @@ prepareRelease() {
 	mv ${ASMACK_BASE}/build/*.{jar,zip} ${RELEASE_DIR}/
 	cp $TAG_FILE ${RELEASE_DIR}/
 	cp ${ASMACK_BASE}/CHANGELOG ${RELEASE_DIR}
+    cp "lib/org.xbill.dns_2.1.6.jar" ${RELEASE_DIR}
 
 	if [[ -n $GPG_KEY ]] ; then
 		find $RELEASE_DIR -maxdepth 1 -and \( -name '*.jar' -or -name '*.zip' \) -print0 \
@@ -501,7 +502,7 @@ setdefaults() {
 	SMACK_BRANCH=unstable
 	SMACK_LOCAL=false
 	UPDATE_REMOTE=true
-	BUILD_CUSTOM=
+	BUILD_CUSTOM="4.0"
 	BUILD_JINGLE=false
 	BUILD_BOSH=false
 	SNAPSHOT=false
