@@ -233,7 +233,7 @@ buildandroid() {
 	local sdklocation
 	local version
 	local sdks
-	local minSdkVer=8
+	local minSdkVer=15
 
 	cd $ASMACK_BASE
 
@@ -495,7 +495,7 @@ setdefaults() {
 	PUBLISH_RELEASE=""
 	PUBLISH_HOST=""
 	PUBLISH_DIR=""
-	BUILD_ANDROID_VERSIONS="19"
+	BUILD_ANDROID_VERSIONS="21"
 
 	# Often used variables
 	ASMACK_BASE=$(pwd)
