@@ -14,6 +14,15 @@
     <isset property="env.ANDROID_HOME" />
 </condition>
 
+<!-- Uncomment below for debugging received property values from ANT command -->
+<!--
+<echo message="sdk-location ${sdk-location}"/>
+<echo message="jar.suffix ${jar.suffix}"/>
+<echo message="jingle ${jingle}"/>
+<echo message="local.properties ${local.properties}"/>
+<echo message="android.version ${android.version}"/>
+-->
+
 <target name="compile-jse"  description="Compile for java se">
     <delete dir="build/classes" failonerror="false" />
     <mkdir dir="build/classes" />
@@ -89,4 +98,3 @@
 />
 
 </project>
-

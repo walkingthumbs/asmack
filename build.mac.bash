@@ -86,7 +86,7 @@ fetchall() {
 	fi
 
 	execute svnfetch "http://svn.apache.org/repos/asf/qpid/trunk/qpid/java/management/common/src/main/" "qpid"
-	execute svnfetch "http://svn.apache.org/repos/asf/harmony/enhanced/java/trunk/classlib/modules/auth/src/main/java/common/" "harmony" 
+	execute svnfetch "http://svn.apache.org/repos/asf/harmony/enhanced/java/trunk/classlib/modules/auth/src/main/java/common/" "harmony"
 	# dnsjava is now in bootclasspath
 	# execute svnfetch "https://svn.code.sf.net/p/dnsjava/code/trunk" "dnsjava"
 	$BUILD_BOSH && execute gitfetch "git://kenai.com/jbosh~origin" "master" "jbosh"
@@ -245,7 +245,7 @@ buildandroid() {
 			exit 1
 		fi
 
-		sdklocation=$(grep sdk-location local.properties| cut -d= -f2)
+		sdklocation=$(grep sdk.dir local.properties| cut -d= -f2)
 		if [ -z "$sdklocation" ] ; then
 			echo "Android SDK not found. Don't build android version"
 			exit 1
@@ -274,7 +274,6 @@ buildandroid() {
 			echo "Building for ${version}"
 			sdks="${sdks} ${version}\n"
 		fi
-
 	done
 
 	if [ -z "${sdks}" ] ; then
@@ -287,6 +286,7 @@ buildandroid() {
 		| xargs -I{} -n 1 $XARGS_ARGS ant \
 		-Dandroid.version={} \
 		-Djar.suffix="${asmack_suffix}" \
+		-Dsdk-location="$sdklocation" \
 		compile-android ; then
 		exit 1
 	fi
@@ -482,7 +482,7 @@ execute() {
 setdefaults() {
 	# Default configuration, can be changed with script arguments
 	SMACK_REPO=git://github.com/walkingthumbs/smack.git
-	SMACK_BRANCH=unstable
+	SMACK_BRANCH=AndroidStudio
 	SMACK_LOCAL=false
 	UPDATE_REMOTE=true
 	BUILD_CUSTOM="4.0"
@@ -495,7 +495,7 @@ setdefaults() {
 	PUBLISH_RELEASE=""
 	PUBLISH_HOST=""
 	PUBLISH_DIR=""
-	BUILD_ANDROID_VERSIONS="21"
+	BUILD_ANDROID_VERSIONS="22"
 
 	# Often used variables
 	ASMACK_BASE=$(pwd)
