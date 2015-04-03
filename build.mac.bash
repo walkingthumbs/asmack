@@ -482,7 +482,7 @@ execute() {
 setdefaults() {
 	# Default configuration, can be changed with script arguments
 	SMACK_REPO=git://github.com/walkingthumbs/smack.git
-	SMACK_BRANCH=AndroidStudio
+	SMACK_BRANCH=unstable
 	SMACK_LOCAL=false
 	UPDATE_REMOTE=true
 	BUILD_CUSTOM="4.0"
