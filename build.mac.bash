@@ -283,7 +283,7 @@ buildandroid() {
 
 	local asmack_suffix="${1}"
 	if ! echo -e ${sdks} \
-		| xargs -I{} -n 1 $XARGS_ARGS ant \
+		| xargs -I{} -n 1 $XARGS_ARGS $ANT_BUILD_CMD \
 		-Dandroid.version={} \
 		-Djar.suffix="${asmack_suffix}" \
 		-Dsdk-location="$sdklocation" \
@@ -556,7 +556,6 @@ checkPrerequisites() {
 }
 
 # Main
-
 setdefaults
 parseopts $@
 # checkPrerequisites
@@ -577,6 +576,10 @@ if $BUILD_JINGLE ; then
 fi
 if [[ -n $BUILD_CUSTOM ]]; then
 	patchsrc "patch/${BUILD_CUSTOM}"
+fi
+ANT_BUILD_CMD="ant"
+if ! [ -z "$1" ]; then
+	ANT_BUILD_CMD=$1
 fi
 build
 
